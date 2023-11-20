@@ -1,0 +1,615 @@
+<template>
+    <b-container fluid>
+      <b-modal id="modal-1" ref="modal-1" title="Agregar Paciente">
+        <form>
+          <div class="col-md-12 mb-3">
+            <label for="nombre">PACIENTE NOMBRE</label>
+            <input
+              required
+              type="text"
+              class="form-control"
+              id="nombre"
+              v-model.trim="$v.form.nombre.$model"
+              :state="!$v.form.nombre.$error"
+              placeholder="Ingresar nombre"
+            >
+          </div>
+          <div class="col-md-12 mb-3">
+            <label for="fecha_nacimiento">FECHA NACIMIENTO</label>
+            <input
+              required
+              type="text"
+              class="form-control"
+              id="fecha_nacimiento"
+              v-model.trim="$v.form.fecha_nacimiento.$model"
+              :state="!$v.form.fecha_nacimiento.$error"
+              placeholder="Ingresar fecha_nacimiento"
+            >
+          </div>
+          <div class="col-md-12 mb-3">
+            <label for="genero">GENERO</label>
+            <input
+              required
+              type="text"
+              class="form-control"
+              id="genero"
+              v-model.trim="$v.form.genero.$model"
+              :state="!$v.form.genero.$error"
+              placeholder="Ingresar genero"
+            >
+          </div>
+          <div class="col-md-12 mb-3">
+            <label for="direccion">DIRECCION</label>
+            <input
+              required
+              type="text"
+              class="form-control"
+              id="direccion"
+              v-model.trim="$v.form.direccion.$model"
+              :state="!$v.form.direccion.$error"
+              placeholder="Ingresar direccion"
+            >
+          </div>
+          <div class="col-md-12 mb-3">
+            <label for="telefono">TELEFONO</label>
+            <input
+              required
+              type="text"
+              class="form-control"
+              id="telefono"
+              v-model.trim="$v.form.telefono.$model"
+              :state="!$v.form.telefono.$error"
+              placeholder="Ingresar telefono"
+            >
+          </div>
+          <div class="col-md-12 mb-3">
+            <label for="informacion_contacto">INFO CONTACTO</label>
+            <input
+              required
+              type="text"
+              class="form-control"
+              id="informacion_contacto"
+              v-model.trim="$v.form.informacion_contacto.$model"
+              :state="!$v.form.informacion_contacto.$error"
+              placeholder="Ingresar informacion_contacto"
+            >
+          </div>
+        </form>
+        <template #modal-footer="{}">
+          <b-button  variant="primary" @click="onSave()"
+            >Guardar</b-button
+          >
+          <b-button variant="danger" @click="closeModal('save')"
+            >Cancelar</b-button
+          >
+        </template>
+      </b-modal>
+      <b-modal id="modal-2" ref="modal-2" title="Editar Paciente">
+        <form>
+            <div class="col-md-12 mb-3">
+            <label for="nombre">PACIENTE NOMBRE</label>
+            <input
+              required
+              type="text"
+              class="form-control"
+              id="nombre"
+              v-model.trim="$v.form.nombre.$model"
+              :state="!$v.form.nombre.$error"
+              placeholder="Ingresar nombre"
+            >
+          </div>
+          <div class="col-md-12 mb-3">
+            <label for="fecha_nacimiento">FECHA NACIMIENTO</label>
+            <input
+              required
+              type="text"
+              class="form-control"
+              id="fecha_nacimiento"
+              v-model.trim="$v.form.fecha_nacimiento.$model"
+              :state="!$v.form.fecha_nacimiento.$error"
+              placeholder="Ingresar fecha_nacimiento"
+            >
+          </div>
+          <div class="col-md-12 mb-3">
+            <label for="genero">GENERO</label>
+            <input
+              required
+              type="text"
+              class="form-control"
+              id="genero"
+              v-model.trim="$v.form.genero.$model"
+              :state="!$v.form.genero.$error"
+              placeholder="Ingresar genero"
+            >
+          </div>
+          <div class="col-md-12 mb-3">
+            <label for="direccion">DIRECCION</label>
+            <input
+              required
+              type="text"
+              class="form-control"
+              id="direccion"
+              v-model.trim="$v.form.direccion.$model"
+              :state="!$v.form.direccion.$error"
+              placeholder="Ingresar direccion"
+            >
+          </div>
+          <div class="col-md-12 mb-3">
+            <label for="telefono">TELEFONO</label>
+            <input
+              required
+              type="text"
+              class="form-control"
+              id="telefono"
+              v-model.trim="$v.form.telefono.$model"
+              :state="!$v.form.telefono.$error"
+              placeholder="Ingresar telefono"
+            >
+          </div>
+          <div class="col-md-12 mb-3">
+            <label for="informacion_contacto">INFO CONTACTO</label>
+            <input
+              required
+              type="text"
+              class="form-control"
+              id="informacion_contacto"
+              v-model.trim="$v.form.informacion_contacto.$model"
+              :state="!$v.form.informacion_contacto.$error"
+              placeholder="Ingresar informacion_contacto"
+            >
+          </div>
+        </form>
+        <template #modal-footer="{}">
+          <b-button  variant="primary" @click="onUpdate()"
+            >Guardar</b-button
+          >
+          <b-button variant="danger" @click="closeModal('update')"
+            >Cancelar</b-button
+          >
+        </template>
+      </b-modal>
+      <b-modal id="modal-3" ref="modal-3" title="Desactivar especialidad">
+        <h6 class="my-4">
+          ¿Desea Eliminar el Paciente: {{ form.nombre }} ?
+        </h6>
+        <template #modal-footer="{}">
+          <b-button
+            type="submit"
+            variant="primary"
+            @click="eliminarRegistro()
+                    $bvModal.hide('modal-3')"
+            >Eliminar</b-button
+          >
+          <b-button variant="danger" @click="$bvModal.hide('modal-3')"
+            >Cancelar</b-button
+          >
+        </template>
+      </b-modal>
+      <b-modal id="modal-4" ref="modal-4" title="Activar especialidad">
+        <h6 class="my-4">
+          ¿Desea activar el usuario: {{ form.user }} ?
+        </h6>
+        <template #modal-footer="{}">
+          <b-button
+            type="submit"
+            variant="primary"
+            @click="onState()
+                    $bvModal.hide('modal-4')"
+            >Activar</b-button
+          >
+          <b-button variant="danger" @click="$bvModal.hide('modal-4')"
+            >Cancelar</b-button
+          >
+        </template>
+      </b-modal>
+      <b-modal id="modal-5" ref="modal-5" title="X">
+      </b-modal>
+      <b-row>
+        <b-col md="12">
+          <iq-card>
+              <template v-slot:headerTitle>
+                <h4 class="card-title mt-3">PACIENTE</h4>
+                <div class="iq-search-bar mt-2">
+                  <div class="row">
+                    <div class="col-sm">
+                      <b-form action="#" class="searchbox">
+                          <b-input id="search" placeholder="Buscar..." @input="(val) => searchChange(val)" />
+                          <a class="search-link" href="#"><i class="ri-search-line"></i></a>
+                      </b-form>
+                    </div>
+                    <div class="col-sm">
+                      <b-dropdown
+                        id="ddown1"
+                        :text="columna.nombre"
+                        variant="outline-dark"
+                        class="mr-1 float-md-left btn-group"
+                        size="xs"
+                      >
+                        <b-dropdown-item
+                          v-for="(search, index) in options"
+                          :key="index"
+                          @click="changeTypeSearch(search)"
+                          >{{ search.nombre }}</b-dropdown-item
+                        >
+                      </b-dropdown>
+                    </div>
+                  </div>
+                </div>
+              </template>
+              <template v-slot:headerAction>
+              <b-button variant="primary"  v-b-modal.modal-1>AGREGAR NUEVO</b-button>
+            </template>
+            <template v-slot:body>
+              <table class="table table-bordered table-striped">
+                <thead class="table-active">
+                <th>
+                  ACCION
+                </th>
+                <th>
+                  Nombre
+                </th>
+                <th>
+                  Fecha nacimiento
+                </th>
+                <th>
+                  Genero
+                </th>
+                <th>
+                  Direccion
+                </th>
+                <th>
+                  Telefono
+                </th>
+                <th>
+                  Informacion Contacto
+                </th>
+               
+                </thead>
+                <tbody>
+                  <tr v-for="datos in datosPost" :key="datos.id">
+                    <td>
+                      <button class="btn btn-outline-dark" @click="accionEdit(1,datos)" v-b-modal.modal-2>
+                        <icon class="ri-pencil-fill"></icon>
+                      </button>
+                      <button class="btn btn-danger" @click="accionEdit(2, datos)" v-b-modal.modal-3>
+                        <icon class="ri-delete-bin-7-fill"></icon>
+                      </button>
+                    </td>
+                    <td v-text="datos.nombre"></td>
+                    <td v-text="datos.fecha_nacimiento"></td>
+                    <td v-text="datos.genero"></td>
+                    <td v-text="datos.direccion"></td>
+                    <td v-text="datos.telefono"></td>
+                    <td v-text="datos.informacion_contacto"></td>
+                  </tr>
+                </tbody>
+              </table>
+            </template>
+          </iq-card>
+        </b-col>
+      </b-row>
+    </b-container>
+  </template>
+  <script>
+  import { xray } from '../../../config/pluginInit'
+  // import VuetablePagination from 'vuetable-2/src/components/VuetablePagination.vue'
+  import useVuelidate from '@vuelidate/core'
+  import { required } from '@vuelidate/validators'
+  import axios from 'axios'
+  import { apiUrl, laravelUrl } from '../../../config/constant'
+  
+  export default {
+    name: 'inicio',
+    components: {
+    },
+    setup () {
+      return { $v: useVuelidate() }
+    },
+    beforeMount () {
+      this.getDatos()
+    },
+    mounted () {
+      xray.index()
+      axios.get(apiUrl + '/type/get').then((response) => {
+        this.typeOptions = response.data
+      })
+      this.getDatos()
+    },
+    data () {
+      return {
+        from: 0,
+        to: 0,
+        total: 0,
+        perPage: 5,
+        search: '',
+        form: {
+          id: 0,
+          nombre: '',
+          fecha_nacimiento: '',
+          genero: '',
+          direccion: '',
+          telefono: '',
+          informacion_contacto: ''
+        },
+        apiBase: laravelUrl + '/pacientes/getAll',
+        datosPost: null,
+        typeOptions: [],
+        options: [
+          { value: '1', nombre: 'NOMBRE' },
+          { value: '2', nombre: 'FECHA_NACIMIENTO' },
+          { value: '3', nombre: 'GENERO' },
+          { value: '4', nombre: 'DIRECCION' },
+          { value: '4', nombre: 'TELEFONO' },
+          { value: '4', nombre: 'INFORMACION_CONTACTO' }
+        ],
+        columna: { value: '1', nombre: 'NOMBRE' },
+        fields: [
+          {
+            name: '__slot:actions',
+            title: 'Acciones',
+            titleClass: '',
+            dataClass: 'text-muted'
+            // width: "15%",
+          },
+          {
+            name: 'nombre',
+            sortField: 'nombre',
+            title: 'NOMBRE',
+            dataClass: 'list-item-heading'
+          },
+          {
+            name: 'fecha_nacimiento',
+            sortField: 'fecha_nacimiento',
+            title: 'FECHA_NACIMIENTO',
+            dataClass: 'list-item-heading'
+          },
+          {
+            name: 'genero',
+            sortField: 'genero',
+            title: 'GENERO',
+            dataClass: 'list-item-heading'
+          },
+          {
+            name: 'direccion',
+            sortField: 'direccion',
+            title: 'DIRECCION',
+            dataClass: 'list-item-heading'
+          },
+          {
+            name: 'telefono',
+            sortField: 'telefono',
+            title: 'TELEFONO',
+            dataClass: 'list-item-heading'
+          },
+          {
+            name: 'informacion_contacto',
+            sortField: 'informacion_contacto',
+            title: 'INFORMACION_CONTACTO',
+            dataClass: 'list-item-heading'
+          }
+        ]
+      }
+    },
+    validations () {
+      return {
+        form: {
+          nombre: { required },
+          fecha_nacimiento: { required },
+          genero: { required },
+          direccion: { required },
+          telefono: { required },
+          informacion_contacto: { required }
+        }
+      }
+    },
+    methods: {
+      eliminarRegistro () {
+        axios.delete(laravelUrl + '/pacientes/delete/' + this.form.id).then((response) => {
+          this.getDatos()
+        })
+      },
+      getDatos () {
+        axios.get(laravelUrl + '/pacientes/getAll').then((response) => {
+          this.datosPost = response.data
+          console.log(this.datosPost)
+        })
+      },
+      accionEdit (accion, datos) {
+        if (accion === 1) {
+          // ACTUALIZAR
+          this.form.id = datos.id
+          this.form.nombre = datos.nombre
+          this.form.fecha_nacimiento = datos.fecha_nacimiento
+          this.form.genero = datos.genero
+          this.form.direccion = datos.direccion
+          this.form.telefono = datos.telefono
+          this.form.informacion_contacto = datos.informacion_contacto
+        } else if (accion === 2) {
+          this.form.id = datos.id
+          this.form.nombre = datos.nombre
+          this.form.fecha_nacimiento = datos.fecha_nacimiento
+          this.form.genero = datos.genero
+          this.form.direccion = datos.direccion
+          this.form.telefono = datos.telefono
+          this.form.informacion_contacto = datos.informacion_contacto
+        }
+      },
+      openModal (modal, action) {
+        switch (modal) {
+          case 'save': {
+            this.$v.$reset()
+            this.form.id = 0
+            this.form.nombre = ''
+            this.form.fecha_nacimiento = ''
+            this.form.genero = ''
+            this.form.direccion = ''
+            this.form.telefono = ''
+            this.form.informacion_contacto = ''
+            break
+          }
+        }
+      },
+      closeModal (action) {
+        switch (action) {
+          case 'save': {
+            this.$v.$reset()
+            this.$refs['modal-1'].hide()
+            this.form.id = 0
+            this.form.nombre = ''
+            this.form.fecha_nacimiento = ''
+            this.form.genero = ''
+            this.form.direccion = ''
+            this.form.telefono = ''
+            this.form.informacion_contacto = ''
+            break
+          }
+          case 'update': {
+            this.$v.$reset()
+            this.$refs['modal-2'].hide()
+            this.form.id = 0
+            this.form.nombre = ''
+            this.form.fecha_nacimiento = ''
+            this.form.genero = ''
+            this.form.direccion = ''
+            this.form.telefono = ''
+            this.form.informacion_contacto = ''
+            break
+          }
+        }
+      },
+      onValidate (action) {
+        this.$v.$touch()
+        if (this.$v.$error !== true) {
+          if (action === 'save') {
+            this.onSave()
+          } else if (action === 'update') {
+            this.onUpdate()
+          }
+        }
+      },
+      setData (data) {
+        this.form.user = data.user
+        this.form.state = data.estado
+        this.form.id = data.id
+        this.form.userType = data.tipo_usuario
+      },
+      /* Guardar */
+      onSave () {
+        const me = this
+        // this.$refs["modalSave"].hide();
+        axios.post(laravelUrl + '/ropa/create', {
+          nombre: me.form.nombre,
+          fecha_nacimiento: me.form.fecha_nacimiento,
+          genero: me.form.genero,
+          direccion: me.form.direccion,
+          telefono: me.form.telefono,
+          informacion_contacto: me.form.informacion_contacto
+        })
+          .then((response) => {
+            me.getDatos()
+            me.closeModal('save')
+          })
+          .catch((error) => {
+            // this.errorMessage = error.message;
+            console.error('Error!', error)
+          })
+      },
+      /* Actualizar */
+      onUpdate () {
+        const me = this
+        axios.put(laravelUrl + '/ropa/update/' + me.form.id, {
+        nombre: me.form.nombre,
+          fecha_nacimiento: me.form.fecha_nacimiento,
+          genero: me.form.genero,
+          direccion: me.form.direccion,
+          telefono: me.form.telefono,
+          informacion_contacto: me.form.informacion_contacto
+        })
+          .then((response) => {
+            this.getDatos()
+            me.closeModal('update')
+          })
+          .catch((error) => {
+            // this.errorMessage = error.message;
+            console.error('Error!', error)
+          })
+      },
+      onState () {
+        let me = this
+        if (this.form.state === 1) {
+          axios
+            .put(apiUrl + '/user/deactivate', {
+              id: this.form.id
+            })
+            .then((response) => {
+              me.$refs.vuetable.refresh()
+              me.$refs['modal-3'].hide()
+            })
+            .catch((error) => {
+              // this.errorMessage = error.message;
+              console.error('There was an error!', error)
+            })
+        } else {
+          axios
+            .put(apiUrl + '/user/activate', {
+              id: this.form.id
+            })
+            .then((response) => {
+              me.$refs.vuetable.refresh()
+            me.$refs['modal-4'].hide()
+            })
+            .catch((error) => {
+              // this.errorMessage = error.message;
+              console.error('There was an error!', error)
+            })
+        }
+      },
+      makeQueryParams (sortOrder, currentPage, perPage) {
+        return sortOrder[0]
+          ? {
+            criterio: sortOrder[0] ? sortOrder[0].sortField : 'createdAt',
+            order: sortOrder[0] ? sortOrder[0].direction : 'desc',
+            page: currentPage,
+            limit: this.perPage,
+            search: this.search,
+            columna: this.columna.value
+          }
+          : {
+            criterio: sortOrder[0] ? sortOrder[0].sortField : 'createdAt',
+            order: sortOrder[0] ? sortOrder[0].direction : 'desc',
+            page: currentPage,
+            limit: this.perPage,
+            search: this.search,
+            columna: this.columna.value
+          }
+      },
+      changePageSizes (perPage) {
+        this.perPage = perPage
+        this.$refs.vuetable.refresh()
+      },
+      searchChange (val) {
+        this.search = val.toLowerCase()
+        this.$refs.vuetable.refresh()
+      },
+      onPaginationData (paginationData) {
+        this.from = paginationData.from
+        this.to = paginationData.to
+        this.total = paginationData.total
+        this.lastPage = paginationData.last_page
+        this.items = paginationData.data
+        this.$refs.pagination.setPaginationData(paginationData)
+      },
+      onChangePage (page) {
+        this.$refs.vuetable.changePage(page)
+      },
+      changeTypeSearch (columna) {
+        this.columna = columna
+      },
+      mensaje (mensaje) {
+        this.$refs['modal-5'].show()
+        this.$refs['modal-5'].title = mensaje
+      }
+    }
+  }
+  </script>
+  

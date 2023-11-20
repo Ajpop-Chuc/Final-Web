@@ -1,0 +1,96 @@
+[
+  {
+    "title": "Dashboard",
+    "name": "sidebar.admin",
+    "is_heading": true,
+    "is_active": false,
+    "class_name": "",
+    "is_icon_class": true,
+    "icon": ""
+  },
+  {
+    "title": "Hospital Dashboard 1",
+    "name": "sidebar.dashboard2",
+    "is_heading": false,
+    "is_active": false,
+    "link": {
+      "name": "dashboard.home-1"
+    },
+    "class_name": "",
+    "is_icon_class": true,
+    "icon": "ri-home-8-fill"
+  },
+  {
+    "title": "Uso Personal",
+    "name": "Uso Personal",
+    "is_heading": false,
+    "is_active": false,
+    "class_name": "",
+    "is_icon_class": true,
+    "icon": "ri-user-smile-fill",
+    "link": {
+      "name" : "usoPersonal.ejercicio"
+    }
+  },
+  {
+    "title": "Producto",
+    "name": "Producto",
+    "is_heading": false,
+    "is_active": false,
+    "class_name": "",
+    "is_icon_class": true,
+    "icon": "ri-shopping-bag-fill",
+    "link": {
+      "name" : "producto.inicio"
+    }
+  },
+  {
+    "title": "Carro",
+    "name": "Carro",
+    "is_heading": false,
+    "is_active": false,
+    "class_name": "",
+    "is_icon_class": true,
+    "icon": "ri-car-fill",
+    "link": {
+      "name" : "carro.inicio"
+    }
+  },
+  {
+    "title": "Ropa",
+    "name": "Ropa",
+    "is_heading": false,
+    "is_active": false,
+    "class_name": "",
+    "is_icon_class": true,
+    "icon": "ri-car-fill",
+    "link": {
+      "name" : "ropa.inicio"
+    }
+  },
+  {
+    "title": "Cifrado",
+    "name": "Cifrado",
+    "is_heading": false,
+    "is_active": false,
+    "class_name": "",
+    "is_icon_class": true,
+    "icon": "ri-input-method-fill",
+    "link": {
+      "name" : "cifrado.inicio"
+    }
+  },
+  {
+    "title": "Tareas",
+    "name": "Tareas",
+    "is_heading": false,
+    "is_active": false,
+    "class_name": "",
+    "is_icon_class": true,
+    "icon": "ri-input-method-fill",
+    "link": {
+      "name" : "tareas.inicio"
+    }
+  }
+
+]
